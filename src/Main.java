@@ -1,6 +1,7 @@
 import exceptions.WrongInputValues;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class Main {
                         "   #   ",
                         " ##### "
                 },
-                {  // 2
+                {
                         " ##### ",
                         "#     #",
                         "      #",
@@ -32,7 +33,7 @@ public class Main {
                         "#      ",
                         "#######"
                 },
-                {  // 3
+                {
                         " ##### ",
                         "#     #",
                         "      #",
@@ -41,7 +42,7 @@ public class Main {
                         "#     #",
                         " ##### "
                 },
-                {  // 4
+                {
                         "#    # ",
                         "#    # ",
                         "#    # ",
@@ -50,7 +51,7 @@ public class Main {
                         "     # ",
                         "     # "
                 },
-                {  // 5
+                {
                         "#######",
                         "#      ",
                         "#      ",
@@ -59,7 +60,7 @@ public class Main {
                         "#     #",
                         " ##### "
                 },
-                {  // 6
+                {
                         " ##### ",
                         "#     #",
                         "#      ",
@@ -68,7 +69,7 @@ public class Main {
                         "#     #",
                         " ##### "
                 },
-                {  // 7
+                {
                         "#######",
                         "     # ",
                         "    #  ",
@@ -77,7 +78,7 @@ public class Main {
                         "  #    ",
                         "  #    "
                 },
-                {  // 8
+                {
                         " ##### ",
                         "#     #",
                         "#     #",
@@ -86,7 +87,7 @@ public class Main {
                         "#     #",
                         " ##### "
                 },
-                {  // 9
+                {
                         " ##### ",
                         "#     #",
                         "#     #",
@@ -111,6 +112,23 @@ public class Main {
             break;
         } while(true);
 
+        prettyPrintDigits(digitsPatterns, input);
+    }
+
+    private static void prettyPrintDigits(String[][] digitsPatterns, String input) {
+        for (int j = 0; j < 7; j++ ) {
+            StringBuilder line = new StringBuilder();
+            for(char currentChar : input.toCharArray()) {
+                int index = Character.getNumericValue(currentChar);
+                line.append(digitsPatterns[index][j]).append("  ");
+            }
+            System.out.println(line);
+            try {
+                TimeUnit.MILLISECONDS.sleep(350);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private static void validateInput(String input) throws WrongInputValues {
